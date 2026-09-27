@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 Wiederholungslektion – Deutsch mit Teacher Zerdazi</title>
+<style>
+:root{
+  --purple:#6d4aff; --purple2:#8b72ff; --ink:#24233a; --muted:#6f6b83;
+  --bg:#f5f3ff; --card:#fff; --line:#e6e1f5; --good:#16834b; --bad:#c93b3b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+header{background:linear-gradient(135deg,var(--purple),var(--purple2));color:white;padding:38px 20px}
+.header-inner{max-width:1000px;margin:auto}
+h1{font-size:34px;margin:0 0 8px}
+h2{font-size:25px;margin-top:0}
+h3{font-size:19px}
+.subtitle{opacity:.95;font-size:16px}
+.container{max-width:1000px;margin:24px auto;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 5px 18px rgba(60,40,120,.06)}
+.section-head{display:flex;gap:12px;align-items:center;margin-bottom:15px}
+.num{width:40px;height:40px;border-radius:12px;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.fr{background:#f0edff;border-left:4px solid var(--purple);padding:10px 14px;border-radius:8px;margin:10px 0;color:#4b4568}
+.tip{background:#fff8df;border-left:4px solid #e7b52f;padding:10px 14px;border-radius:8px}
+.audio{background:#f7f5ff;border:1px dashed #b9adff;border-radius:14px;padding:15px;margin:14px 0}
+.audio strong{display:block;margin-bottom:8px}
+audio{width:100%}
+.question{padding:12px 0;border-bottom:1px solid #eee}
+.question:last-child{border-bottom:0}
+input[type=text],input[type=number],textarea,select{
+  border:1.5px solid #d7d1ea;border-radius:8px;padding:8px 10px;font:inherit;
+  background:white;max-width:100%;
+}
+input[type=text]{min-width:190px}
+textarea{width:100%;min-height:110px;resize:vertical}
+.blank{width:220px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:middle}
+th{background:#f2efff}
+td input{width:100%;min-width:70px}
+.options{display:flex;flex-wrap:wrap;gap:8px}
+.option{border:1px solid var(--line);padding:8px 12px;border-radius:9px}
+button{border:0;border-radius:10px;padding:11px 16px;font-weight:bold;cursor:pointer;background:var(--purple);color:#fff}
+button.secondary{background:#ece8ff;color:#4938a5}
+button.danger{background:#eee;color:#333}
+.score{position:sticky;bottom:10px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 25px #0001;border-radius:16px;padding:14px;margin:20px 0;display:flex;gap:12px;align-items:center;justify-content:space-between;z-index:5}
+.feedback{font-weight:bold}
+.correct{border-color:#55b986!important;background:#f0fff7!important}
+.incorrect{border-color:#e66!important;background:#fff3f3!important}
+.answer-note{font-size:13px;color:var(--muted)}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.timebox{border:1px solid var(--line);border-radius:12px;padding:12px;background:#faf9ff}
+.project{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.person{border:1px solid var(--line);padding:15px;border-radius:14px}
+footer{text-align:center;color:var(--muted);padding:35px 15px}
+@media(max-width:700px){
+ h1{font-size:27px}.card{padding:17px}.timeline,.project{grid-template-columns:1fr}
+ table{font-size:14px;display:block;overflow-x:auto}
+ input[type=text]{min-width:130px}
+ .score{position:static;display:block}.score button{margin-top:8px}
+}
+@media print{
+ body{background:white}.card{box-shadow:none;break-inside:avoid}.score,button{display:none}
+ header{background:#6d4aff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* Participant start screen + certificate report */
+.start-overlay{position:fixed;inset:0;background:rgba(27,18,48,.72);backdrop-filter:blur(6px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.start-box{width:min(520px,100%);background:#fff;border-radius:24px;padding:34px;box-shadow:0 25px 80px rgba(0,0,0,.25);text-align:center}
+.start-box h1{margin:0 0 8px;color:#5b21b6}.start-box p{color:#666;margin:0 0 22px}.start-box input{width:100%;box-sizing:border-box;padding:14px 16px;border:2px solid #ddd;border-radius:12px;font-size:18px;margin-bottom:14px}
+.participant-badge{display:inline-flex;align-items:center;gap:8px;background:#f3e8ff;color:#5b21b6;border-radius:999px;padding:7px 13px;font-weight:800;margin:8px 0 16px}
+.certificate-report{display:none;background:#fff;max-width:900px;margin:0 auto;padding:48px;border:12px solid #f3e8ff;border-radius:20px;box-sizing:border-box}
+.certificate-report h1{font-size:34px;color:#5b21b6;margin:0}.certificate-report .cert-name{font-size:30px;font-weight:900;margin:22px 0 8px}.cert-grade{font-size:64px;font-weight:900;color:#5b21b6}.cert-table{width:100%;border-collapse:collapse;margin:24px 0}.cert-table td{padding:10px;border-bottom:1px solid #eee}.cert-observation{padding:18px;border-radius:14px;background:#faf5ff;margin-top:18px}.cert-footer{margin-top:35px;display:flex;justify-content:space-between;font-size:13px;color:#666}
+@media print{
+ body{background:#fff!important}.no-print,header,footer,.start-overlay,.worksheet-content{display:none!important}.certificate-report{display:block!important;border:8px solid #f3e8ff;box-shadow:none;page-break-inside:avoid}
+ @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body><div id="startOverlay" class="start-overlay">
+ <div class="start-box">
+  <div style="font-size:46px">🇩🇪</div>
+  <h1>A1 Wiederholungslektion</h1>
+  <p>Avant de commencer, veuillez saisir le nom du participant.</p>
+  <input id="participantNameInput" type="text" autocomplete="name" placeholder="Nom et prénom du participant" aria-label="Nom du participant">
+  <button onclick="startWorksheet()" style="width:100%;font-size:17px">Commencer la fiche →</button>
+  <div style="font-size:12px;color:#888;margin-top:12px">Le nom apparaîtra sur le résultat et le rapport imprimable.</div>
+ </div>
+</div>
+
+
+<header>
+ <div class="header-inner">
+  <div class="subtitle">IRIS Language Academy · Teacher Zerdazi</div>
+  <h1>A1 WIEDERHOLUNGSLEKTION</h1>
+  <div class="subtitle">„Hallo! Ich bin …“ · Deutsch + consignes pédagogiques en français</div>
+ </div>
+</header>
+
+<div class="container worksheet-content">
+ <div class="participant-badge">👤 <span>Participant :</span> <strong id="participantDisplay">—</strong></div>
+
+<div class="card">
+ <h2>📚 Arbeitsblatt – Révision complète A1</h2>
+ <p><b>Au programme :</b> Salutations · présentation · origine · profession · pronoms · conjugaison · routine quotidienne · ordre des mots · heure · compréhension orale · projet « Meine Klasse »</p>
+ <div class="fr"><b>Conseil :</b> Pour les activités d’écoute, écoutez d’abord pour comprendre l’idée générale, puis réécoutez pour trouver les détails.</div>
+</div>
+
+<div class="score">
+ <div><b>Arbeitsstand / Progression :</b> <span id="progress">0%</span> · <span id="scoreText">Auto-correction disponible pour les exercices objectifs.</span></div>
+ <div>
+  <button onclick="checkAll()">✓ Korrigieren</button>
+  <button class="secondary" onclick="window.print()">🖨 Drucken</button>
+  <button class="danger" onclick="resetAll()">↺ Reset</button>
+ </div>
+</div>
+
+<!-- 1 -->
+<section class="card">
+ <div class="section-head"><div class="num">1</div><div><h2>Hören: Eine neue Kollegin</h2></div></div>
+ <div class="fr">Mise en route : une nouvelle collègue. Écoutez sans lire le texte. Première écoute = idée générale. Deuxième écoute = détails.</div>
+ <div class="audio"><strong>🎧 Audio 1 – Eine neue Kollegin</strong>
+  <audio controls preload="none"><source src="audio/audio1.mp3" type="audio/mpeg">Votre navigateur ne prend pas en charge l'audio.</audio>
+  <div class="answer-note">Placez votre fichier plus tard dans <b>audio/audio1.mp3</b>.</div>
+ </div>
+ <h3>Aufgabe 1 — Hören und verstehen</h3>
+ <div class="fr">Répondez aux questions après l’écoute.</div>
+ <div id="a1">
+  <div class="question">1. Wie heißt die Sprecherin? <input data-answer="Amina" type="text"></div>
+  <div class="question">2. Woher kommt sie? <input data-answer="Algerien" type="text"></div>
+  <div class="question">3. Wie alt ist sie? <input data-answer="22|zweiundzwanzig" type="text"></div>
+  <div class="question">4. Was ist sie von Beruf? <input data-answer="Studentin" type="text"></div>
+  <div class="question">5. Wann steht sie auf? <input data-answer="6 Uhr|sechs Uhr" type="text"></div>
+  <div class="question">6. Was macht sie am Nachmittag? <input data-answer="Sie arbeitet in einem Café|arbeitet in einem Café" type="text"></div>
+  <div class="question">7. Was macht sie am Abend? <input data-answer="Sie sieht fern oder liest ein Buch|sieht fern oder liest ein Buch|sie sieht fern oder sie liest ein Buch" type="text"></div>
+  <div class="question">8. Wann schläft sie? <input data-answer="23 Uhr|dreiundzwanzig Uhr" type="text"></div>
+ </div>
+</section>
+
+<!-- 2 -->
+<section class="card">
+ <div class="section-head"><div class="num">2</div><div><h2>Bildlexikon: Begrüßungen</h2></div></div>
+ <div class="fr">Lexique illustré : choisissez ou écrivez la salutation qui convient.</div>
+ <table>
+  <tr><th>Deutsch</th><th>Français / utilisation</th></tr>
+  <tr><td>☀ Guten Morgen!</td><td>Le matin</td></tr>
+  <tr><td>Guten Tag!</td><td>Dans la journée, registre formel</td></tr>
+  <tr><td>Guten Abend!</td><td>Le soir</td></tr>
+  <tr><td>Hallo!</td><td>Informel, à tout moment</td></tr>
+  <tr><td>Servus!</td><td>Bavière / Autriche</td></tr>
+  <tr><td>Auf Wiedersehen!</td><td>Formel, au moment de partir</td></tr>
+  <tr><td>Tschüss!</td><td>Informel, au moment de partir</td></tr>
+ </table>
+ <h3>Aufgabe 2 — Welche Begrüßung passt?</h3>
+ <div class="fr">Écrivez la salutation adaptée à chaque situation.</div>
+ <div class="question">1. Es ist acht Uhr morgens. Sie kommen in die Klasse. <input data-answer="Guten Morgen" type="text"></div>
+ <div class="question">2. Es ist zwanzig Uhr. Sie kommen ins Restaurant. <input data-answer="Guten Abend" type="text"></div>
+ <div class="question">3. Ihr Freund geht nach Hause. Sie sagen informell. <input data-answer="Tschüss" type="text"></div>
+ <div class="question">4. Ein Geschäftsmann kommt ins Büro. Es ist vierzehn Uhr. <input data-answer="Guten Tag" type="text"></div>
+ <div class="question">5. Ihre Nachbarin geht. Sie sagen formell. <input data-answer="Auf Wiedersehen" type="text"></div>
+ <div class="question">6. Sie treffen einen Freund in München. <input data-answer="Servus" type="text"></div>
+</section>
+
+<!-- 3 -->
+<section class="card">
+ <div class="section-head"><div class="num">3</div><div><h2>Kommunikation: Name, Herkunft, Beruf</h2></div></div>
+ <div class="fr">Expressions utiles : observez les modèles puis complétez les dialogues.</div>
+ <table>
+  <tr><th>Frage</th><th>Antwort</th></tr>
+  <tr><td>Wie heißen Sie?</td><td>Ich heiße … / Mein Name ist …</td></tr>
+  <tr><td>Wie heißt du?</td><td>Ich heiße …</td></tr>
+  <tr><td>Woher kommen Sie?</td><td>Ich komme aus …</td></tr>
+  <tr><td>Wo wohnen Sie?</td><td>Ich wohne in …</td></tr>
+  <tr><td>Was sind Sie von Beruf?</td><td>Ich bin … von Beruf.</td></tr>
+  <tr><td>Wie alt sind Sie?</td><td>Ich bin … Jahre alt.</td></tr>
+ </table>
+
+ <h3>Aufgabe 3 — Dialog A: formell</h3>
+ <p>A: Guten Tag! Wie <input data-answer="heißen" type="text"> Sie?</p>
+ <p>B: Guten Tag! Mein Name <input data-answer="ist" type="text"> Müller. Und wie <input data-answer="heißen" type="text"> Sie?</p>
+ <p>A: Ich <input data-answer="heiße" type="text"> Schmidt. Woher <input data-answer="kommen" type="text"> Sie?</p>
+ <p>B: Ich <input data-answer="komme" type="text"> aus Deutschland. Und Sie?</p>
+ <p>A: Ich <input data-answer="komme" type="text"> aus Algerien. Ich <input data-answer="wohne" type="text"> in Algier.</p>
+ <p>B: Was <input data-answer="sind" type="text"> Sie von Beruf?</p>
+ <p>A: Ich <input data-answer="bin" type="text"> Lehrerin.</p>
+
+ <h3>Aufgabe 3 — Dialog B: informell</h3>
+ <p>A: Hallo! Wie <input data-answer="heißt" type="text"> du?</p>
+ <p>B: Ich <input data-answer="heiße" type="text"> Karim. Und du?</p>
+ <p>A: Ich <input data-answer="heiße" type="text"> Yasmine. Woher <input data-answer="kommst" type="text"> du?</p>
+ <p>B: Ich <input data-answer="komme" type="text"> aus Tunesien. Und was <input data-answer="bist" type="text"> du?</p>
+ <p>A: Ich <input data-answer="bin" type="text"> Studentin.</p>
+ <p>B: Wie alt <input data-answer="bist" type="text"> du?</p>
+ <p>A: Ich <input data-answer="bin" type="text"> einundzwanzig Jahre alt.</p>
+
+ <h3>Aufgabe 4 — Schreiben Sie über sich selbst</h3>
+ <div class="fr">Complétez les phrases pour vous présenter.</div>
+ <p>Ich heiße <input type="text"></p>
+ <p>Ich komme aus <input type="text"></p>
+ <p>Ich wohne in <input type="text"></p>
+ <p>Ich bin <input type="number"> Jahre alt.</p>
+ <p>Ich bin <input type="text"> von Beruf.</p>
+ <p>Ich lerne <input type="text"></p>
+</section>
+
+<!-- 4 -->
+<section class="card">
+ <div class="section-head"><div class="num">4</div><div><h2>Strukturen: Personalpronomen und Verben</h2></div></div>
+ <div class="fr">Structures : pronoms personnels et verbes. La forme du verbe dépend du sujet.</div>
+ <div class="tip"><b>Merke :</b> Bei regelmäßigen Verben auf <b>-en</b> helfen die Personalpronomen bei der Konjugation.</div>
+ <h3>Aufgabe 5 — Konjugationstabelle</h3>
+ <table>
+  <tr><th>Pronomen</th><th>sein</th><th>heißen</th><th>kommen</th><th>wohnen</th><th>arbeiten</th></tr>
+  <tr><td>ich</td><td><input data-answer="bin"></td><td><input data-answer="heiße"></td><td><input data-answer="komme"></td><td><input data-answer="wohne"></td><td><input data-answer="arbeite"></td></tr>
+  <tr><td>du</td><td><input data-answer="bist"></td><td><input data-answer="heißt"></td><td><input data-answer="kommst"></td><td><input data-answer="wohnst"></td><td><input data-answer="arbeitest"></td></tr>
+  <tr><td>er/sie/es</td><td><input data-answer="ist"></td><td><input data-answer="heißt"></td><td><input data-answer="kommt"></td><td><input data-answer="wohnt"></td><td><input data-answer="arbeitet"></td></tr>
+  <tr><td>wir</td><td><input data-answer="sind"></td><td><input data-answer="heißen"></td><td><input data-answer="kommen"></td><td><input data-answer="wohnen"></td><td><input data-answer="arbeiten"></td></tr>
+  <tr><td>ihr</td><td><input data-answer="seid"></td><td><input data-answer="heißt"></td><td><input data-answer="kommt"></td><td><input data-answer="wohnt"></td><td><input data-answer="arbeitet"></td></tr>
+  <tr><td>sie/Sie</td><td><input data-answer="sind"></td><td><input data-answer="heißen"></td><td><input data-answer="kommen"></td><td><input data-answer="wohnen"></td><td><input data-answer="arbeiten"></td></tr>
+ </table>
+
+ <h3>Aufgabe 6 — er oder sie?</h3>
+ <div class="question">1. Das ist Omar. <input data-answer="Er kommt aus Algerien." type="text"></div>
+ <div class="question">2. Das ist Lena. <input data-answer="Sie ist Lehrerin." type="text"></div>
+ <div class="question">3. Omar <input data-answer="ist" type="text"> Arzt. <input data-answer="Er arbeitet in Algier." type="text"></div>
+ <div class="question">4. Lena <input data-answer="kommt" type="text"> aus Deutschland. <input data-answer="Sie wohnt in Berlin." type="text"></div>
+ <div class="question">5. Omar und Lena <input data-answer="sind" type="text"> Freunde. <input data-answer="Sie kommen aus verschiedenen Ländern." type="text"></div>
+ <div class="question">6. Ich <input data-answer="heiße" type="text"> Ali. <input data-answer="Ich bin Student." type="text"></div>
+
+ <h3>Aufgabe 7 — Schreiben Sie über eine Person</h3>
+ <div class="fr">Choisissez une personne de votre famille ou de votre cercle d’amis. Écrivez cinq phrases.</div>
+ <textarea placeholder="Name, Herkunft, Wohnort, Beruf, weiterer Satz ..."></textarea>
+</section>
+
+<!-- 5 -->
+<section class="card">
+ <div class="section-head"><div class="num">5</div><div><h2>Tagesablauf und Wortstellung</h2></div></div>
+ <div class="fr">Routine quotidienne et ordre des mots. Règle essentielle : le verbe conjugué reste en position 2.</div>
+ <div class="timeline">
+  <div class="timebox">🕖 <b>07:00</b><br>aufstehen</div>
+  <div class="timebox">🚿 <b>07:15</b><br>duschen</div>
+  <div class="timebox">☕ <b>07:30</b><br>frühstücken</div>
+  <div class="timebox">🚌 <b>08:00</b><br>fahren</div>
+  <div class="timebox">💼 <b>09:00–17:00</b><br>arbeiten</div>
+  <div class="timebox">🛒 <b>18:00</b><br>einkaufen</div>
+  <div class="timebox">📺 <b>20:00</b><br>fernsehen</div>
+  <div class="timebox">😴 <b>23:00</b><br>schlafen</div>
+ </div>
+ <h3>Aufgabe 8 — Bildlexikon Tagesablauf</h3>
+ <div class="fr">Écrivez une phrase complète pour chaque situation, avec l’indication de l’heure.</div>
+ <table>
+  <tr><th>Zeit</th><th>Verb</th><th>Satz</th></tr>
+  <tr><td>7:00</td><td>aufstehen</td><td><input data-answer="Um sieben Uhr stehe ich auf."></td></tr>
+  <tr><td>7:15</td><td>duschen</td><td><input data-answer="Um sieben Uhr fünfzehn dusche ich.|Um Viertel nach sieben dusche ich."></td></tr>
+  <tr><td>7:30</td><td>frühstücken</td><td><input data-answer="Um halb acht frühstücke ich."></td></tr>
+  <tr><td>8:00</td><td>fahren</td><td><input data-answer="Um acht Uhr fahre ich."></td></tr>
+  <tr><td>9:00–17:00</td><td>arbeiten</td><td><input data-answer="Von neun bis siebzehn Uhr arbeite ich."></td></tr>
+  <tr><td>18:00</td><td>einkaufen</td><td><input data-answer="Um achtzehn Uhr kaufe ich ein."></td></tr>
+  <tr><td>20:00</td><td>fernsehen</td><td><input data-answer="Um zwanzig Uhr sehe ich fern."></td></tr>
+  <tr><td>23:00</td><td>schlafen</td><td><input data-answer="Um dreiundzwanzig Uhr schlafe ich."></td></tr>
+ </table>
+
+ <h3>Aufgabe 9 — Wortstellung üben</h3>
+ <div class="fr">Remettez les mots dans le bon ordre.</div>
+ <div class="question">1. aus / ich / Algerien / komme <input data-answer="Ich komme aus Algerien." type="text"></div>
+ <div class="question">2. heißt / du / wie / ? <input data-answer="Wie heißt du?" type="text"></div>
+ <div class="question">3. von Beruf / was / du / bist / ? <input data-answer="Was bist du von Beruf?" type="text"></div>
+ <div class="question">4. um 7 Uhr / ich / auf / stehe <input data-answer="Um 7 Uhr stehe ich auf." type="text"></div>
+ <div class="question">5. arbeitet / sie / in Berlin <input data-answer="Sie arbeitet in Berlin." type="text"></div>
+ <div class="question">6. am Abend / wir / fern / sehen <input data-answer="Am Abend sehen wir fern." type="text"></div>
+ <div class="question">7. kommt / er / aus Deutschland / ? <input data-answer="Kommt er aus Deutschland?" type="text"></div>
+ <div class="question">8. Lehrerin / sie / ist / von Beruf <input data-answer="Sie ist Lehrerin von Beruf." type="text"></div>
+ <div class="question">9. um 23 Uhr / schlafe / ich <input data-answer="Um 23 Uhr schlafe ich." type="text"></div>
+ <div class="question">10. am Morgen / dusche / ich <input data-answer="Am Morgen dusche ich." type="text"></div>
+
+ <h3>Aufgabe 10 — Freies Schreiben</h3>
+ <div class="fr">Écrivez votre routine quotidienne en cinq phrases. Utilisez au moins trois indications de temps.</div>
+ <textarea placeholder="Um ... Ich ... Dann ... Am Abend ..."></textarea>
+</section>
+
+<!-- 6 -->
+<section class="card">
+ <div class="section-head"><div class="num">6</div><div><h2>Uhrzeit: Wie spät ist es?</h2></div></div>
+ <div class="fr">L’heure : quelle heure est-il ?</div>
+ <table>
+  <tr><th>Frage</th><th>Antwort</th></tr>
+  <tr><td>Wie spät ist es?</td><td>Es ist …</td></tr>
+  <tr><td>Wie viel Uhr ist es?</td><td>Es ist …</td></tr>
+  <tr><td>Um wie viel Uhr …?</td><td>Um …</td></tr>
+ </table>
+ <h3>Aufgabe 11 — Informell und formell</h3>
+ <div class="fr">Complétez avec la forme courante et la forme horaire précise.</div>
+ <table>
+  <tr><th>Uhrzeit</th><th>Informell</th><th>Formell</th></tr>
+  <tr><td>7:00</td><td><input data-answer="sieben Uhr"></td><td><input data-answer="sieben Uhr"></td></tr>
+  <tr><td>8:30</td><td><input data-answer="halb neun"></td><td><input data-answer="acht Uhr dreißig"></td></tr>
+  <tr><td>12:15</td><td><input data-answer="Viertel nach zwölf"></td><td><input data-answer="zwölf Uhr fünfzehn"></td></tr>
+  <tr><td>15:45</td><td><input data-answer="Viertel vor vier"></td><td><input data-answer="fünfzehn Uhr fünfundvierzig"></td></tr>
+  <tr><td>20:00</td><td><input data-answer="acht Uhr"></td><td><input data-answer="zwanzig Uhr"></td></tr>
+  <tr><td>22:30</td><td><input data-answer="halb elf"></td><td><input data-answer="zweiundzwanzig Uhr dreißig"></td></tr>
+ </table>
+ <div class="tip"><b>Merkhilfe :</b> halb + nächste Stunde · Viertel nach + Stunde · Viertel vor + nächste Stunde.</div>
+
+ <h3>Aufgabe 12 — Sprechen und Schreiben</h3>
+ <div class="fr">Répondez aux questions en phrases complètes.</div>
+ <p>1. Wie spät ist es jetzt? <input type="text"></p>
+ <p>2. Wann stehst du auf? <input type="text"></p>
+ <p>3. Wann frühstückst du? <input type="text"></p>
+ <p>4. Wann beginnt dein Deutschkurs? <input type="text"></p>
+ <p>5. Wann gehst du schlafen? <input type="text"></p>
+</section>
+
+<!-- 7 -->
+<section class="card">
+ <div class="section-head"><div class="num">7</div><div><h2>Hörverstehen: Wer ist das?</h2></div></div>
+ <div class="fr">Compréhension orale : écoutez le texte deux fois, puis répondez en phrases complètes.</div>
+ <div class="audio"><strong>🎧 Audio 2 – Wer ist das?</strong>
+  <audio controls preload="none"><source src="audio/audio2.mp3" type="audio/mpeg"></audio>
+  <div class="answer-note">Placez votre fichier dans <b>audio/audio2.mp3</b>.</div>
+ </div>
+ <h3>Aufgabe 13 — Fragen zum Hörtext</h3>
+ <div class="question">1. Woher kommt Karim? <input type="text"></div>
+ <div class="question">2. Wie alt ist Karim? <input type="text"></div>
+ <div class="question">3. Was ist Karim von Beruf? <input type="text"></div>
+ <div class="question">4. Wann steht Karim auf? <input type="text"></div>
+ <div class="question">5. Wann arbeitet Karim? <input type="text"></div>
+ <div class="question">6. Woher kommt Lena? <input type="text"></div>
+ <div class="question">7. Was ist Lena von Beruf? <input type="text"></div>
+ <div class="question">8. Was macht Lena am Nachmittag? <input type="text"></div>
+ <div class="question">9. Was macht Lena am Abend? <input type="text"></div>
+ <div class="question">10. Wo wohnen Karim und Lena? <input type="text"></div>
+ <h3>Aufgabe 14 — Zusammenfassen</h3>
+ <div class="fr">Écrivez cinq phrases sur la journée de Karim avec <b>er</b>.</div>
+ <textarea></textarea>
+</section>
+
+<!-- 8 -->
+<section class="card">
+ <div class="section-head"><div class="num">8</div><div><h2>Abschluss: Mini-Projekt „Meine Klasse“</h2></div></div>
+ <div class="fr">Créez une affiche, sur papier ou en numérique, intitulée « Meine Klasse ».</div>
+ <p><b>Für drei Personen:</b> ich · mein Freund / meine Freundin · eine berühmte Person.</p>
+ <div class="project">
+  <div class="person"><h3>👤 Person 1</h3><input placeholder="Name"><input placeholder="Herkunft"><input placeholder="Alter"><input placeholder="Beruf"><textarea placeholder="3 Sätze zum Tagesablauf"></textarea></div>
+  <div class="person"><h3>👤 Person 2</h3><input placeholder="Name"><input placeholder="Herkunft"><input placeholder="Alter"><input placeholder="Beruf"><textarea placeholder="3 Sätze zum Tagesablauf"></textarea></div>
+  <div class="person"><h3>👤 Person 3</h3><input placeholder="Name"><input placeholder="Herkunft"><input placeholder="Alter"><input placeholder="Beruf"><textarea placeholder="3 Sätze zum Tagesablauf"></textarea></div>
+ </div>
+ <div class="tip"><b>Présentation :</b> ajoutez une salutation, une formule de départ, des images/symboles et préparez une présentation orale de 1 à 2 minutes.</div>
+</section>
+
+<!-- 9 -->
+<section class="card">
+ <div class="section-head"><div class="num">9</div><div><h2>Großes Hörverstehen: „Ein Tag in meinem Leben“</h2></div></div>
+ <div class="fr">Grande compréhension orale : cette activité réunit les thèmes de toute la leçon.</div>
+ <div class="audio"><strong>🎧 Audio 3 – Ein Tag in meinem Leben · Teil 1–2</strong>
+  <audio controls preload="none"><source src="audio/audio3.mp3" type="audio/mpeg"></audio>
+  <div class="answer-note">Vous pourrez remplacer ce fichier par votre enregistrement de la partie 1–2.</div>
+ </div>
+ <div class="audio"><strong>🎧 Audio 4 – Ein Tag in meinem Leben · Teil 3–4</strong>
+  <audio controls preload="none"><source src="audio/audio4.mp3" type="audio/mpeg"></audio>
+  <div class="answer-note">Vous pourrez remplacer ce fichier par votre enregistrement de la partie 3–4.</div>
+ </div>
+
+ <h3>Aufgabe 15 — Block A: Begrüßung und Vorstellung</h3>
+ <div class="fr">Écoutez deux fois et répondez en phrases complètes.</div>
+ <div class="question">1. Wie heißt die Sprecherin? <input type="text"></div>
+ <div class="question">2. Woher kommt Amina? <input type="text"></div>
+ <div class="question">3. Wie alt ist Amina? <input type="text"></div>
+ <div class="question">4. Was ist Amina von Beruf? <input type="text"></div>
+ <div class="question">5. Wo wohnt Amina? <input type="text"></div>
+ <div class="question">6. Wie heißt der Vater von Amina? Was ist er von Beruf? <input type="text"></div>
+ <div class="question">7. Wie heißt die Mutter von Amina? Was ist sie von Beruf? <input type="text"></div>
+ <div class="question">8. Woher kommt Karim? <input type="text"></div>
+ <div class="question">9. Was ist Karim von Beruf? <input type="text"></div>
+ <div class="question">10. Woher kommt Lena? Was ist sie von Beruf? <input type="text"></div>
+
+ <h3>Block B: Tagesablauf und Uhrzeit</h3>
+ <div class="question">11. Wann steht Amina auf? <input type="text"></div>
+ <div class="question">12. Was macht Amina um halb sieben? <input type="text"></div>
+ <div class="question">13. Wann fährt Amina zur Universität? <input type="text"></div>
+ <div class="question">14. Wie lange dauert die Fahrt? <input type="text"></div>
+ <div class="question">15. Wann arbeitet Amina im Café? <input type="text"></div>
+ <div class="question">16. Wann steht Karim auf? <input type="text"></div>
+ <div class="question">17. Wann arbeitet Karim? <input type="text"></div>
+ <div class="question">18. Wann steht Lena auf? <input type="text"></div>
+ <div class="question">19. Was macht Lena am Nachmittag? <input type="text"></div>
+ <div class="question">20. Wann schlafen Amina, Karim und Lena? <input type="text"></div>
+
+ <h3>Block C: Richtig oder falsch?</h3>
+ <div class="fr">Cochez vrai ou faux.</div>
+ <table>
+  <tr><th>Aussage</th><th>Richtig</th><th>Falsch</th></tr>
+  <tr><td>Amina kommt aus Tunesien.</td><td><input type="radio" name="c1" value="r"></td><td><input type="radio" name="c1" value="f"></td></tr>
+  <tr><td>Amina ist zweiundzwanzig Jahre alt.</td><td><input type="radio" name="c2" value="r"></td><td><input type="radio" name="c2" value="f"></td></tr>
+  <tr><td>Aminas Vater ist Lehrer.</td><td><input type="radio" name="c3" value="r"></td><td><input type="radio" name="c3" value="f"></td></tr>
+  <tr><td>Karim arbeitet in einem Restaurant.</td><td><input type="radio" name="c4" value="r"></td><td><input type="radio" name="c4" value="f"></td></tr>
+  <tr><td>Karim steht um sieben Uhr auf.</td><td><input type="radio" name="c5" value="r"></td><td><input type="radio" name="c5" value="f"></td></tr>
+  <tr><td>Lena kommt aus Deutschland.</td><td><input type="radio" name="c6" value="r"></td><td><input type="radio" name="c6" value="f"></td></tr>
+  <tr><td>Lena lernt Arabisch.</td><td><input type="radio" name="c7" value="r"></td><td><input type="radio" name="c7" value="f"></td></tr>
+  <tr><td>Amina arbeitet am Morgen im Café.</td><td><input type="radio" name="c8" value="r"></td><td><input type="radio" name="c8" value="f"></td></tr>
+  <tr><td>Karim schläft um zweiundzwanzig Uhr.</td><td><input type="radio" name="c9" value="r"></td><td><input type="radio" name="c9" value="f"></td></tr>
+  <tr><td>Alle drei lernen Deutsch.</td><td><input type="radio" name="c10" value="r"></td><td><input type="radio" name="c10" value="f"></td></tr>
+ </table>
+
+ <h3>Block D: Freies Schreiben</h3>
+ <div class="fr">Écrivez 8–10 phrases sur votre propre journée. Utilisez une salutation, nom/origine/profession, au moins 5 heures, au moins 3 verbes correctement conjugués et une formule de départ.</div>
+ <textarea style="min-height:220px" placeholder="Guten Morgen! Ich heiße ..."></textarea>
+</section>
+
+<!-- source script support -->
+<section class="card">
+ <div class="section-head"><div class="num">🎧</div><div><h2>Audio-Skripte für die Lehrkraft</h2></div></div>
+ <div class="fr">Les scripts ci-dessous correspondent au grand Hörtext du PDF. Ils peuvent être utilisés pour enregistrer Audio 3 et Audio 4.</div>
+ <details>
+  <summary><b>Teil 1 — Begrüßung und Vorstellung</b></summary>
+  <p>Guten Morgen! Ich heiße Amina. Ich komme aus Algerien, aus Oran. Ich bin zweiundzwanzig Jahre alt. Ich bin Studentin. Ich lerne Deutsch und ich lerne auch Englisch. Ich wohne in Oran, aber meine Universität ist in Algier. Meine Familie wohnt auch in Oran. Mein Vater heißt Mohammed. Er ist Arzt. Meine Mutter heißt Fatima. Sie ist Lehrerin. Ich habe einen Bruder. Er heißt Youssef. Er ist Student. Er lernt Informatik.</p>
+  <p>Und das ist mein Freund Karim. Guten Tag, Karim! Karim kommt aus Tunesien, aus Tunis. Er ist sechsundzwanzig Jahre alt. Er ist Koch. Er arbeitet in einem Restaurant in der Innenstadt. Er wohnt in Tunis. Seine Familie wohnt auch in Tunis. Sein Vater ist Ingenieur. Seine Mutter ist Ärztin.</p>
+  <p>Und das ist Lena. Guten Abend, Lena! Lena kommt aus Deutschland, aus Berlin. Sie ist neunundzwanzig Jahre alt. Sie ist Lehrerin. Sie wohnt in Berlin. Sie arbeitet in einer Schule. Sie lernt Arabisch. Ihre Familie wohnt in München. Ihr Bruder ist Student.</p>
+  <p>Wir sind Freunde. Wir kommen aus verschiedenen Ländern, aber wir lernen alle Deutsch.</p>
+ </details>
+ <details>
+  <summary><b>Teil 2 — Tagesablauf und Uhrzeit</b></summary>
+  <p>Jetzt erzähle ich von meinem Tag. Mein Tag beginnt um sechs Uhr. Um sechs Uhr stehe ich auf. Dann dusche ich. Um halb sieben frühstücke ich. Ich esse Brot, Käse und ich trinke Tee. Um sieben Uhr fahre ich zur Universität. Ich fahre mit dem Bus. Die Fahrt dauert eine Stunde. Um acht Uhr beginne ich zu lernen. Ich lerne von acht bis zwölf Uhr. Um zwölf Uhr esse ich zu Mittag. Am Nachmittag arbeite ich in einem Café. Ich arbeite von vierzehn bis achtzehn Uhr. Um achtzehn Uhr gehe ich nach Hause. Um neunzehn Uhr koche ich und esse zu Abend. Am Abend sehe ich fern oder ich lese ein Buch. Um dreiundzwanzig Uhr schlafe ich.</p>
+  <p>Und Karim? Karim steht um fünf Uhr auf. Er steht sehr früh auf! Um halb sechs frühstückt er. Um sechs Uhr fährt er zur Arbeit. Er arbeitet von acht bis achtzehn Uhr. Er kocht den ganzen Tag. Um achtzehn Uhr geht er nach Hause. Am Abend kocht er auch zu Hause. Um zweiundzwanzig Uhr schläft er.</p>
+  <p>Und Lena? Lena steht um sieben Uhr auf. Um halb acht frühstückt sie. Um acht Uhr fährt sie zur Schule. Sie arbeitet von acht bis vierzehn Uhr. Am Nachmittag lernt sie Arabisch. Sie lernt von fünfzehn bis siebzehn Uhr. Am Abend liest sie oder sie sieht fern. Um dreiundzwanzig Uhr schläft sie.</p>
+ </details>
+ <details>
+  <summary><b>Teil 3 — Fragen und Antworten</b></summary>
+  <p>Und jetzt einige Fragen. Wie heißen Sie? Woher kommen Sie? Wo wohnen Sie? Was sind Sie von Beruf? Wie alt sind Sie? Wann stehen Sie auf? Wann frühstücken Sie? Wann arbeiten Sie? Wann gehen Sie schlafen?</p>
+  <p>Das sind viele Fragen! Und hier sind die Antworten. Ich heiße Amina. Ich komme aus Algerien. Ich wohne in Oran. Ich bin Studentin. Ich bin zweiundzwanzig Jahre alt. Ich stehe um sechs Uhr auf. Ich frühstücke um halb sieben. Ich arbeite am Nachmittag. Ich schlafe um dreiundzwanzig Uhr.</p>
+  <p>Karim heißt Karim. Er kommt aus Tunesien. Er wohnt in Tunis. Er ist Koch. Er ist sechsundzwanzig Jahre alt. Er steht um fünf Uhr auf. Er frühstückt um halb sechs. Er arbeitet von acht bis achtzehn Uhr. Er schläft um zweiundzwanzig Uhr.</p>
+  <p>Lena heißt Lena. Sie kommt aus Deutschland. Sie wohnt in Berlin. Sie ist Lehrerin. Sie ist neunundzwanzig Jahre alt. Sie steht um sieben Uhr auf. Sie frühstückt um halb acht. Sie arbeitet von acht bis vierzehn Uhr. Sie schläft um dreiundzwanzig Uhr.</p>
+ </details>
+ <details>
+  <summary><b>Teil 4 — Abschied und Wiederholung</b></summary>
+  <p>Also, das war ein Tag in meinem Leben. Ich heiße Amina. Ich komme aus Algerien. Ich bin Studentin. Mein Tag beginnt um sechs Uhr. Ich stehe auf, ich dusche, ich frühstücke, ich fahre zur Universität, ich lerne, ich arbeite, ich koche, ich sehe fern und ich schlafe.</p>
+  <p>Mein Freund Karim kommt aus Tunesien. Er ist Koch. Er steht um fünf Uhr auf. Er arbeitet von acht bis achtzehn Uhr.</p>
+  <p>Meine Freundin Lena kommt aus Deutschland. Sie ist Lehrerin. Sie steht um sieben Uhr auf. Sie arbeitet von acht bis vierzehn Uhr. Am Nachmittag lernt sie Arabisch.</p>
+  <p>Wir kommen aus verschiedenen Ländern. Wir sprechen verschiedene Sprachen. Aber wir lernen alle Deutsch. Deutsch ist schön!</p>
+  <p>Und jetzt: Auf Wiedersehen! Tschüss! Bis bald! Guten Abend! Gute Nacht!</p>
+ </details>
+</section>
+
+<section class="card">
+ <h2>🏁 Abschluss</h2>
+ <div class="fr">Bravo ! Vous avez terminé la fiche de révision A1. Vérifiez vos réponses, puis faites le mini-projet « Meine Klasse » à l’oral.</div>
+ <button onclick="checkAll(true)">✓ Submit &amp; obtenir ma note / 20</button>
+ <div id="finalResult" class="result-box" aria-live="polite" style="display:none;margin-top:18px;padding:20px;border-radius:16px;border:2px solid #7c3aed;background:#faf5ff;text-align:center">
+  <div style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">Résultat final</div>
+  <div id="finalGrade" style="font-size:52px;font-weight:900;line-height:1.05;margin:8px 0;color:#5b21b6">— / 20</div>
+  <div id="finalPercent" style="font-size:18px;font-weight:700">— %</div>
+  <div id="finalDetails" style="margin-top:8px"></div>
+  <div style="margin-top:10px;font-size:13px;color:#666">La note est calculée uniquement à partir des questions auto-corrigeables.</div>
+ </div>
+</section>
+
+</div>
+
+<section id="certificateReport" class="certificate-report">
+ <div style="text-align:center">
+  <div style="font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#777">IRIS Language Academy</div>
+  <h1>Certificat de résultat</h1>
+  <div style="color:#777">A1 Wiederholungslektion · « Hallo! Ich bin … »</div>
+  <div class="cert-name" id="reportName">Participant</div>
+  <div style="color:#777" id="reportDate">—</div>
+  <div class="cert-grade" id="reportGrade">— / 20</div>
+  <div id="reportPercent" style="font-size:18px;font-weight:700">— %</div>
+ </div>
+ <table class="cert-table">
+  <tr><td><b>Résultat</b></td><td id="reportMark">—</td></tr>
+  <tr><td><b>Réponses correctes</b></td><td id="reportCorrect">—</td></tr>
+  <tr><td><b>Questions non renseignées</b></td><td id="reportUnanswered">—</td></tr>
+ </table>
+ <div class="cert-observation"><b>Observation pédagogique</b><br><span id="reportObservation">—</span></div>
+ <div class="cert-footer"><span>Teacher Zerdazi</span><span>IRIS Language Academy</span></div>
+ <div class="no-print" style="text-align:center;margin-top:28px"><button onclick="printCertificate()">🖨️ Imprimer le certificat / rapport</button></div>
+</section>
+
+<footer>
+ <b>Teacher Zerdazi · IRIS Language Academy</b><br>
+ A1 Wiederholungslektion · Deutsch mit französischen consignes
+</footer>
+
+<script>
+let participantName = "";
+function startWorksheet(){
+ const input=document.getElementById("participantNameInput");
+ const name=input.value.trim();
+ if(!name){input.focus(); input.style.borderColor="#dc2626"; return;}
+ participantName=name;
+ document.getElementById("participantDisplay").textContent=name;
+ document.getElementById("startOverlay").style.display="none";
+ input.style.borderColor="#ddd";
+}
+function observationForGrade(g){
+ if(g>=18) return "Excellent travail. Les connaissances évaluées dans cette fiche A1 sont très bien maîtrisées. Continuez à pratiquer l’expression orale et écrite en allemand.";
+ if(g>=16) return "Très bon travail. Les principales notions évaluées sont bien maîtrisées. Continuez à renforcer la précision et la fluidité.";
+ if(g>=14) return "Bon travail. Les bases sont acquises dans l’ensemble. Une pratique régulière permettra de consolider les points encore fragiles.";
+ if(g>=12) return "Travail satisfaisant. Les bases sont présentes, mais plusieurs notions doivent encore être consolidées par des exercices réguliers.";
+ if(g>=10) return "Niveau en cours d’acquisition. Il est recommandé de revoir le vocabulaire, la conjugaison, l’ordre des mots et l’expression de l’heure.";
+ return "Les notions évaluées nécessitent encore un travail de consolidation. Une révision guidée des contenus A1 et davantage de pratique sont recommandées.";
+}
+function markForGrade(g){
+ if(g>=18) return "Excellent";
+ if(g>=16) return "Très bien";
+ if(g>=14) return "Bien";
+ if(g>=12) return "Satisfaisant";
+ if(g>=10) return "Passable";
+ return "À renforcer";
+}
+function updateCertificate(grade,pct,correct,total,answered){
+ document.getElementById("reportName").textContent=participantName || "Participant";
+ document.getElementById("reportGrade").textContent=grade.toFixed(1)+" / 20";
+ document.getElementById("reportPercent").textContent=pct+" %";
+ document.getElementById("reportMark").textContent=markForGrade(grade);
+ document.getElementById("reportCorrect").textContent=correct+" / "+total;
+ document.getElementById("reportUnanswered").textContent=(total-answered).toString();
+ document.getElementById("reportObservation").textContent=observationForGrade(grade);
+ document.getElementById("reportDate").textContent=new Date().toLocaleDateString("fr-FR",{day:"2-digit",month:"long",year:"numeric"});
+}
+function printCertificate(){
+ if(document.getElementById("finalResult").style.display==="none"){ alert("Veuillez d'abord soumettre le travail pour générer le rapport."); return; }
+ window.print();
+}
+
+function norm(s){
+ return (s||"").toLowerCase().trim()
+   .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+   .replace(/[.!?,;:]/g,"").replace(/\s+/g," ");
+}
+function checkInput(el){
+ const raw=el.dataset.answer;
+ if(!raw) return null;
+ const accepted=raw.split("|").map(norm);
+ const value=norm(el.value);
+ if(!value){el.classList.remove("correct","incorrect");return null}
+ const ok=accepted.includes(value);
+ el.classList.toggle("correct",ok); el.classList.toggle("incorrect",!ok);
+ return ok;
+}
+function checkAll(submitted=false){
+ let total=0, correct=0, answered=0;
+ document.querySelectorAll("input[data-answer]").forEach(el=>{
+   total++;
+   const r=checkInput(el);
+   if(r!==null){answered++;if(r)correct++}
+ });
+ const radios=[
+  ["c1","f"],["c2","r"],["c3","f"],["c4","r"],["c5","f"],
+  ["c6","r"],["c7","r"],["c8","f"],["c9","r"],["c10","r"]
+ ];
+ radios.forEach(([name,val])=>{
+   total++;
+   const selected=document.querySelector('input[name="'+name+'"]:checked');
+   if(selected){answered++; if(selected.value===val)correct++;}
+ });
+ const pct=total?Math.round(correct/total*100):0;
+ const grade=Math.round((correct/total*20)*10)/10;
+ document.getElementById("progress").textContent=pct+"%";
+ document.getElementById("scoreText").textContent=`${correct} / ${total} points vérifiables · ${answered} réponses renseignées · Note : ${grade.toFixed(1)} / 20`;
+ document.querySelectorAll("input[data-answer]").forEach(el=>{
+   el.title=el.classList.contains("correct")?"✓ Correct":"✗ Vérifiez votre réponse";
+ });
+ if(submitted){
+   document.getElementById("finalResult").style.display="block";
+   document.getElementById("finalGrade").textContent=grade.toFixed(1)+" / 20";
+   document.getElementById("finalPercent").textContent=pct+" %";
+   document.getElementById("finalDetails").textContent=`${correct} bonne(s) réponse(s) sur ${total}. ${total-answered} question(s) non renseignée(s).`;
+   updateCertificate(grade,pct,correct,total,answered);
+   document.getElementById("certificateReport").style.display="block";
+   document.getElementById("finalResult").scrollIntoView({behavior:"smooth",block:"center"});
+ } else {
+   window.scrollTo({top:0,behavior:"smooth"});
+ }
+}
+function resetAll(){
+ if(!confirm("Effacer toutes les réponses ?")) return;
+ document.querySelectorAll("input,textarea").forEach(el=>{
+   if(el.type==="radio"||el.type==="checkbox") el.checked=false;
+   else el.value="";
+   el.classList.remove("correct","incorrect");
+ });
+ document.getElementById("progress").textContent="0%";
+ document.getElementById("scoreText").textContent="Auto-correction disponible pour les exercices objectifs.";
+ document.getElementById("finalResult").style.display="none";
+ document.getElementById("certificateReport").style.display="none";
+ document.getElementById("finalGrade").textContent="— / 20";
+ document.getElementById("finalPercent").textContent="— %";
+}
+document.querySelectorAll("input[data-answer]").forEach(el=>{
+ el.addEventListener("input",()=>checkInput(el));
+});
+document.getElementById("participantNameInput").addEventListener("keydown",e=>{if(e.key==="Enter")startWorksheet();});
+</script>
+</body>
+</html>
